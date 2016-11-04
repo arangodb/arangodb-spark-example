@@ -22,6 +22,7 @@ object Server {
                         httpRes: HttpServletResponse) = {
       httpRes.setContentType("text/html")
       httpRes.setStatus(HttpServletResponse.SC_OK)
+      httpRes.getWriter().println("<h1>all movies that have \"Lord.*Rings\" in their title</h1>")
       getMovies(sc).foreach { x => httpRes.getWriter().println(x.title + "<br />") }
       req.setHandled(true)
     }
@@ -30,10 +31,11 @@ object Server {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf(false)
-      .setMaster("local") //tcp://arangodb-proxy.marathon.mesos:8529
-      .setAppName("test")
-      .set("arangodb.host", "192.168.173.86") //arangodb-proxy.marathon.mesos
-      .set("arangodb.port", "8530")
+      .setMaster("mesos://arangodb-proxy.marathon.mesos:8529") //.setMaster("local[8]")
+      .setAppName("movie-example")
+      .set("arangodb.host", "arangodb-proxy.marathon.mesos")
+      .set("arangodb.port", "8529")
+      .set("arangodb.user", "root")
 
     val sc = new SparkContext(conf)
 
