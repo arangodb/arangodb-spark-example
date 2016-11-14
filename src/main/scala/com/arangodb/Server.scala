@@ -31,7 +31,7 @@ object Server {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf(false)
-      .setMaster("mesos://arangodb-proxy.marathon.mesos:8529") //.setMaster("local[8]")
+      .setMaster("mesos://master.mesos:5050") //.setMaster("local[8]")
       .setAppName("movie-example")
       .set("arangodb.host", "arangodb-proxy.marathon.mesos")
       .set("arangodb.port", "8529")
