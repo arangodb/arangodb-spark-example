@@ -13,9 +13,10 @@ ADD src src
 ADD pom.xml pom.xml
 
 # Prepare by downloading dependencies
-RUN ["mvn", "dependency:resolve"]  
-RUN ["mvn", "verify"]
-RUN ["mvn", "package"]
+RUN ["mvn", "dependency:resolve", "verify", "package"]
+RUN ["cp", "target/arangodb-spark-example-1.0.0-SNAPSHOT-allinone.jar", "/arangodb-spark-example-1.0.0-SNAPSHOT-allinone.jar"]
+WORKDIR /
+RUN ["rm" ,"-Rf", "/arangodb-spark-example"]
 
 EXPOSE 8080
-CMD ["java", "-jar", "target/arangodb-spark-example-1.0.0-SNAPSHOT-allinone.jar"]
+CMD ["java", "-jar", "/arangodb-spark-example-1.0.0-SNAPSHOT-allinone.jar"]
