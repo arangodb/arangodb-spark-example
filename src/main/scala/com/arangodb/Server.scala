@@ -36,6 +36,7 @@ object Server {
       .set("arangodb.host", "arangodb-proxy.marathon.mesos")
       .set("arangodb.port", "8529")
       .set("arangodb.user", "root")
+      .set("spark.mesos.executor.docker.image", "mesosphere/spark:1.6.0")
 
     val sc = new SparkContext(conf)
 
