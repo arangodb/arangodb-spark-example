@@ -38,6 +38,7 @@ object Server {
       .set("arangodb.user", "root")
       .set("spark.mesos.executor.docker.image", "mesosphere/spark:1.6.0")
       .set("spark.mesos.executor.home", "/opt/spark/dist")
+      .set("spark.driver.memory", "4g")
 
     val sc = new SparkContext(conf)
     println(sc.version)
