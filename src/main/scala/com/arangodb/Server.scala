@@ -40,6 +40,7 @@ object Server {
       .set("spark.mesos.executor.home", "/opt/spark/dist")
 
     val sc = new SparkContext(conf)
+    println(sc.version)
 
     val server = new org.eclipse.jetty.server.Server(8080)
     server.setHandler(new Handler(sc))
