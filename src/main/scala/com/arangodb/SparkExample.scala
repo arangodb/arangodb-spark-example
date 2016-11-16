@@ -14,14 +14,14 @@ object SparkExample {
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf(false)
-      .setMaster("mesos://master.mesos:5050") //.setMaster("local[8]")
+      //      .setMaster("local[4]")
+      .setMaster("mesos://master.mesos:5050")
       .setAppName("movie-example")
       .set("arangodb.host", "10.0.2.92")
       .set("arangodb.port", "1026")
+      //      .set("arangodb.host", "localhost")
+      //      .set("arangodb.port", "8529")
       .set("arangodb.user", "root")
-      .set("spark.mesos.executor.docker.image", "mesosphere/spark:1.6.0")
-      .set("spark.mesos.executor.home", "/opt/spark/dist")
-      .set("spark.driver.memory", "4g")
 
     setupDB(conf)
     val sc = new SparkContext(conf)
