@@ -32,7 +32,7 @@ object SparkExample {
   }
 
   def setupDB(conf: SparkConf): Unit = {
-    val arangoDB = new ArangoDB.Builder().host(conf.get("arangodb.host")).port(conf.get("arangodb.port").asInstanceOf[Integer]).user(conf.get("arangodb.user")).build()
+    val arangoDB = new ArangoDB.Builder().host(conf.get("arangodb.host")).port(conf.get("arangodb.port").toInt).user(conf.get("arangodb.user")).build()
     try {
       arangoDB.db().collection(COLLECTION_NAME).drop()
     } catch {
