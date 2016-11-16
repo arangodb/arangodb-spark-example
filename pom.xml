@@ -49,7 +49,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.arangodb.Server</mainClass>
+							<mainClass>com.arangodb.SparkExample</mainClass>
 						</manifest>
 					</archive>
 					<finalName>
