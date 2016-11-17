@@ -32,7 +32,7 @@ object Server {
   }
 
   def main(args: Array[String]): Unit = {
-    val arangoDB = new ArangoDB.Builder().host("localhost").user("root").build();
+    val arangoDB = new ArangoDB.Builder().host("arangodb-proxy.marathon.mesos").user("root").build();
     val server = new org.eclipse.jetty.server.Server(8080)
     server.setHandler(new Handler(arangoDB))
     server.start
