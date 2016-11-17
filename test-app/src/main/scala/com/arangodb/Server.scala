@@ -32,14 +32,14 @@ object Server {
   }
 
   def main(args: Array[String]): Unit = {
-    val arangoDB = new ArangoDB.Builder().host("arangodb-proxy.marathon.mesos").user("root").build();
+    val arangoDB = new ArangoDB.Builder().host("localhost").user("root").build();
     val server = new org.eclipse.jetty.server.Server(8080)
     server.setHandler(new Handler(arangoDB))
     server.start
   }
 
   def getMovies(arangoDB: ArangoDB): ArangoCursor[Movie] = {
-    arangoDB.db().query("return doc in @@col return doc", new MapBuilder().put("@col", COLLECTION_NAME).get(), null, classOf[Movie])
+    arangoDB.db().query("for doc in @@col return doc", new MapBuilder().put("@col", COLLECTION_NAME).get(), null, classOf[Movie])
   }
 
   case class Movie(@BeanProperty title: String) {
