@@ -2,13 +2,14 @@ package com.arangodb
 
 import scala.beans.BeanProperty
 
-import javax.servlet.http.HttpServletResponse
-import javax.servlet.http.HttpServletRequest
-import org.eclipse.jetty.server.handler.AbstractHandler
 import org.eclipse.jetty.server.Request
+import org.eclipse.jetty.server.handler.AbstractHandler
+
+import com.arangodb.Server.Movie
 import com.arangodb.util.MapBuilder
-import scala.reflect.ClassTag
-import scala.Predef
+
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 object Server {
 
@@ -31,7 +32,7 @@ object Server {
   }
 
   def main(args: Array[String]): Unit = {
-    val arangoDB = new ArangoDB.Builder().host("arangodb-proxy.marathon.mesos").port(int2Integer(8529)).user("root").build();
+    val arangoDB = new ArangoDB.Builder().host("arangodb-proxy.marathon.mesos").user("root").build();
     val server = new org.eclipse.jetty.server.Server(8080)
     server.setHandler(new Handler(arangoDB))
     server.start
