@@ -20,9 +20,9 @@ project/plugins/project/
 .cache-tests
 
 /bin
-/.classpath
-/.project
-/.settings
-/target
+.classpath
+.project
+.settings
+target
 /.idea
 /*.iml
