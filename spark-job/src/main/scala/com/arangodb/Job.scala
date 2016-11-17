@@ -7,21 +7,18 @@ import org.apache.spark.SparkContext
 
 import com.arangodb.spark.ArangoSpark
 
-object SparkExample {
+object Job {
 
   private val COLLECTION_NAME = "ring_movies"
 
   def main(args: Array[String]): Unit = {
 
     val conf = new SparkConf(false)
-      //      .setMaster("local[4]")
       .setMaster("mesos://master.mesos:5050")
       .setAppName("movie-example")
       .set("arangodb.host", "arangodb-proxy.marathon.mesos")
-      //      .set("arangodb.host", "localhost")
       .set("arangodb.port", "8529")
       .set("arangodb.user", "root")
-    //      .set("spark.mesos.executor.docker.image", "mesosphere/spark:1.0.6-2.0.2-hadoop-2.7")
 
     setupDB(conf)
     val sc = new SparkContext(conf)
