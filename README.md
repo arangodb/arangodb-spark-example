@@ -1,1 +1,3 @@
-![ArangoDB-Logo](https://www.arangodb.com/docs/assets/arangodb_logo_2016_inverted.png)
+**EOL notice**
+
+This library is no longer supported. Please consider using [ArangoDB Datasource for Apache Spark](https://github.com/arangodb/arangodb-spark-datasource).
